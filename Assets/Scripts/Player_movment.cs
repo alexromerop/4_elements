@@ -17,11 +17,16 @@ public class Player_movment : MonoBehaviour
 
     public float element_time;
     public GameObject Flame;
+    public GameObject Water;
+    public GameObject Wing;
+    public GameObject Earth;
+    public GameObject Now;
 
     // Start is called before the first frame update
     void Start()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
+        Now = Flame;
     }
 
     // Update is called once per frame
@@ -45,10 +50,26 @@ public class Player_movment : MonoBehaviour
             Jump();
         }
 
-        //if (Input.GetKey)
+        if (Input.GetKeyDown("1"))
+        {
+            switch_Elements(Flame);
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            switch_Elements(Water);
+            Debug.Log("waaterr");
+        }
+        if (Input.GetKeyDown("3"))
+        {
+            switch_Elements(Wing);
+        }
+        if (Input.GetKeyDown("4"))
+        {
+            switch_Elements(Earth);
+        }
         if (Input.GetKeyDown("e") )
         {
-            Call_Element(Flame);
+            Call_Element(Now);
         }
         if (Health <= 0)
         {
@@ -96,13 +117,13 @@ public class Player_movment : MonoBehaviour
        
         GameObject inst_Flame = Instantiate(elements, transform.position, transform.rotation * Quaternion.Euler(dir_, 0f, dir));
         
-        inst_Flame.GetComponent<Fire>().SetDirection(direction);
+        //inst_Flame.GetComponent<Scr_Elements>().SetDirection(direction);
     }
 
 
-    void switch_Elements()
+    void switch_Elements(GameObject elements)
     {
-
+        Now = elements;
     }
 }
 

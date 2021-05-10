@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class Scr_Elements : MonoBehaviour
 {
     // Start is called before the first frame update
     public float speed;
