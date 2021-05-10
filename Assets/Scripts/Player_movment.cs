@@ -14,6 +14,10 @@ public class Player_movment : MonoBehaviour
     public float horizontal;
 
     public int Health =1;
+
+    public float element_time;
+    public GameObject Flame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,9 +39,13 @@ public class Player_movment : MonoBehaviour
         }
         else in_ground = false;
 
-        if (Input.GetKeyDown("space") && in_ground && !gameObject.tag.Equals("Player"))
+        if (Input.GetKeyDown("space") && in_ground)
         {
             Jump();
+        }
+        if (Input.GetKeyDown("e") )
+        {
+            flame();
         }
         if (Health <= 0)
         {
@@ -73,5 +81,18 @@ public class Player_movment : MonoBehaviour
         if (Health == 0) Debug.Log("Dead");
        
     }
+    public void flame()
+    {
+        float dir;
+        float dir_;
 
+        Vector3 direction;
+
+        if (this.transform.localScale.x == 1.0f) { direction = Vector3.right; dir = 0; dir_ = -90; }
+        else { direction = Vector3.left; dir = 180; dir_=90; }
+       
+        GameObject inst_Flame = Instantiate(Flame, transform.position, transform.rotation * Quaternion.Euler(dir_, 0f, dir));
+        
+        inst_Flame.GetComponent<Fire>().SetDirection(direction);
+    }
 }
